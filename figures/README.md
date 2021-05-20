@@ -1,6 +1,16 @@
 # Figure Description
 
-A compiled figure containing all of the listed figures below, are also uploaded.
+These figures are generated from the raw CSV files found in the "rawdata" folder. Note that only wild-type thrombi with no truncations in the image stacks are used. In other words, we use the following files: 
+
+- 6.21.17 WT1 1 min.csv
+- 4.18.19 WT5 1 min no-p.csv
+- 2.11.19 WT4 1 min p.csv
+- 9.18.18 WT2 5 min.csv
+- 2.11.19 WT6 5 min no-p.csv
+- 2.11.19 WT5 5 min no-p.csv
+- 12.13.18 WT4 5 min.csv
+- 7.30.19 S2 20 min.csv
+- 8.27.19 S4 20 min.csv
 
 ### Figure 1A: Thrombus, Platelet, and Vault Volumes
 Displays the thrombus volume (i.e. platelet volume + vault volume), platelet volume (i.e. non-empty space), and vault volumes (i.e. empty space within the thormbus). 
