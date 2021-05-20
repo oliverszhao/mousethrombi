@@ -29,3 +29,5 @@ loaded via a namespace (and not attached):
 [49] leaflet_2.0.3     xml2_1.2.2        ggdendro_0.1-20   generics_0.0.2    vctrs_0.2.1       tools_3.6.2       glue_1.3.1        hms_0.5.3        
 [57] crosstalk_1.0.0   fastmap_1.0.1     yaml_2.2.0        colorspace_1.4-1  rvest_0.3.5       haven_2.2.0      
 ```
+
+Basic comments are included in the ```Figures.R``` code, but line-by-line comments are not included for conciseness. I heavily recommend referring to the ggplot2 documentation for understanding what each line of code means, as there is little actual data crunching and the code is mainly used to generate figures. 
