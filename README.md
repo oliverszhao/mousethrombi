@@ -1,6 +1,6 @@
-# mousethrombi
+# R Code Documentation
 
-
+The following packages were imported, as shown below. The package versions are also shown, although precise version matches are likely not necessary. 
 
 ```{r}
 library(ggplot2)
