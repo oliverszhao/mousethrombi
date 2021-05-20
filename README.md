@@ -1,3 +1,6 @@
+# Directory Description
+The "rawdata" folder contains the raw CSV data of platelet volumes for each thrombus. Meanwhile, the "figures" folder contains the figures generated from the R code file ```Figures.R```. Below, we document the package versions used in the R code, and briefly explain the written R code.
+
 # R Code Documentation
 
 The following packages were imported, as shown below. The package versions are also shown, although precise version matches are likely not necessary. 
