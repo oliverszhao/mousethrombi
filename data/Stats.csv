@@ -1,0 +1,29 @@
+﻿Group A,Group B,p-value
+,,
+Figure 1A,,
+1 Minute Thrombus,5 Minute Thrombus,0.1143
+1 Minute Platelets,5 Minute Platelets,0.1143
+,,
+Figure 1B,,
+1 Minute Tightly,5 Minute Tightly,0.6286
+1 Minute Loosely,5 Minute Loosely,0.1143
+1 Minute Degranulated,5 Minute Degranulated,0.1143
+,,
+Figure 1C,,
+1 Minute Extra,5 Minute Extra,0.4
+1 Minute Intra,5 Minute Intra,0.2286
+,,
+Figure 2A,,
+1 Minute Extra,5 Minute Extra,0.2286
+1 Minute Intra,5 Minute Intra,0.8571
+1 Minute Cavity,5 Minute Cavity,0.8571
+,,
+Figure 2B,,
+1 Minute Extra,5 Minute Extra,0.8544
+1 Minute Intra,5 Minute Intra,0.05714
+1 Minute Cavity,5 Minute Cavity,1
+,,
+Figure 2C,,
+1 Minute Extra,5 Minute Extra,0.4
+1 Minute Intra,5 Minute Intra,0.8571
+1 Minute Cavity,5 Minute Cavity,0.4
