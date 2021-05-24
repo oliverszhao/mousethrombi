@@ -81,13 +81,17 @@ for (file in files){
   ct <- ct+1
 }
 
+# Export dataset as CSV
+write.csv(DataSet1,'Dataset1.csv')
+
 
 ###########################
 ###   CREATE DATASET 2  ###
 ###########################
 ###    FOR FIGURES 1B   ###
 ###########################
-
+# Export dataset as CSV
+write.csv(DataSet1,'Dataset1.csv')
 DataSet2 <- data.frame(matrix(nrow=length(files), ncol=4))
 DataSet2 <- plyr::rename(DataSet2, c("X1"="Total", "X2"="Tight", "X3"="Loose", "X4"="Degranulated"))
 DataSet2$Time <- times
@@ -106,6 +110,8 @@ for (file in files){
   ct <- ct+1
 }
 
+# Export dataset as CSV
+write.csv(DataSet2,'Dataset2.csv')
 
 ############################
 ###   CREATE DATASET 3   ###
@@ -177,6 +183,9 @@ for (file in files){
   ct <- ct + 1
 }
 
+# Export dataset as CSV
+write.csv(Dataset3,'Dataset3.csv')
+
 
 ########################################################
 ### FIGURE 1A: Thrombus, Platelet, and Vault Volumes ###
@@ -197,6 +206,18 @@ Data1A <- Data1A %>%
   )
 Data1A$Measurement <- factor(Data1A$Measurement,levels = c("Thrombus","Platelets","Vaults"))
 Sum1A <- summarySE(Data1A, measurevar=("Volume"), groupvars=c("Time","Measurement"))
+
+# Export Data for Figure 1 as CSV
+write.csv(Data1A,'Figure1A.csv')
+
+# Statistical test
+Thrombus.1Min = Data1A$Volume[Data1A$Time==1 & Data1A$Measurement=='Thrombus']
+Thrombus.5Min = Data1A$Volume[Data1A$Time==5 & Data1A$Measurement=='Thrombus']
+Platelets.1Min = Data1A$Volume[Data1A$Time==1 & Data1A$Measurement=='Platelets']
+Platelets.5Min = Data1A$Volume[Data1A$Time==5 & Data1A$Measurement=='Platelets']
+
+wilcox.test(Thrombus.1Min,Thrombus.5Min)
+wilcox.test(Platelets.1Min,Platelets.5Min)
 
 # Generate Plot
 Figure_1A <- ggplot(Data1A, aes(x=Time, y=Volume, color=Measurement)) + theme_bw() + 
@@ -262,6 +283,21 @@ Data1B$Degranulated <- Data1B$Degranulated/1e9
 Data1B <- gather(Data1B,Type,Volume,c("Tight","Loose","Degranulated"))
 Sum1B <- summarySE(Data1B, measurevar="Volume", groupvars=c("Time","Type"))
 
+# Export Data for Figure 1 as CSV
+write.csv(Data1B,'Figure1B.csv')
+
+# Statistical test
+Tight.1Min = Data1B$Volume[Data1B$Time==1 & Data1B$Type=='Tight']
+Tight.5Min = Data1B$Volume[Data1B$Time==5 & Data1B$Type=='Tight']
+Loose.1Min = Data1B$Volume[Data1B$Time==1 & Data1B$Type=='Loose']
+Loose.5Min = Data1B$Volume[Data1B$Time==5 & Data1B$Type=='Loose']
+Degran.1Min = Data1B$Volume[Data1B$Time==1 & Data1B$Type=='Degranulated']
+Degran.5Min = Data1B$Volume[Data1B$Time==5 & Data1B$Type=='Degranulated']
+
+wilcox.test(Tight.1Min,Tight.5Min)
+wilcox.test(Loose.1Min,Loose.5Min)
+wilcox.test(Degran.1Min,Degran.5Min)
+
 # Generate Plot
 Figure_1B <- ggplot(Data1B, aes(x=Time, y=Volume, color=Type)) + theme_bw() +
   
@@ -323,6 +359,18 @@ Data1C$Extravascular <- Data1C$Extravascular/1e9
 Data1C$Intravascular <- Data1C$Intravascular/1e9
 Data1C <- gather(Data1C,Type,Volume,c("Extravascular","Intravascular"))
 Sum1C <- summarySE(Data1C, measurevar="Volume", groupvars=c("Time","Type"))
+
+# Export Data for Figure 1 as CSV
+write.csv(Data1C,'Figure1C.csv')
+
+# Statistical test
+Extra.1Min = Data1C$Volume[Data1C$Time==1 & Data1C$Type=='Extravascular']
+Extra.5Min = Data1C$Volume[Data1C$Time==5 & Data1C$Type=='Extravascular']
+Intra.1Min = Data1C$Volume[Data1C$Time==1 & Data1C$Type=='Intravascular']
+Intra.5Min = Data1C$Volume[Data1C$Time==5 & Data1C$Type=='Intravascular']
+
+wilcox.test(Extra.1Min,Extra.5Min)
+wilcox.test(Intra.1Min,Intra.5Min)
 
 # Generate Plot
 Figure_1C <- ggplot(Data1C, aes(x=Time, y=Volume, color=Type)) + theme_bw() +
@@ -390,7 +438,23 @@ Degran.Summary <- summarySE(Degran.df, measurevar="Fraction", groupvars=c("Time"
 Loose.Summary <- summarySE(Loose.df, measurevar="Fraction", groupvars=c("Time","Location"))
 Tight.Summary <- summarySE(Tight.df, measurevar="Fraction", groupvars=c("Time","Location"))
 
-# Figure 2A: Degranulated Platelets
+### Figure 2A: Degranulated Platelets
+# Export Data for Figure 2A as CSV
+write.csv(Degran.df,'Figure2A.csv')
+
+# Statistical test for Degranulated Platelets
+Degran.Extra.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Extravascular' & Dataset3$Type=='Degranulated']
+Degran.Extra.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Extravascular' & Dataset3$Type=='Degranulated']
+Degran.Intra.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Intravascular' & Dataset3$Type=='Degranulated']
+Degran.Intra.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Intravascular' & Dataset3$Type=='Degranulated']
+Degran.Cavity.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Cavity' & Dataset3$Type=='Degranulated']
+Degran.Cavity.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Cavity' & Dataset3$Type=='Degranulated']
+
+wilcox.test(Degran.Extra.1Min,Degran.Extra.5Min)
+wilcox.test(Degran.Intra.1Min,Degran.Intra.5Min)
+wilcox.test(Degran.Cavity.1Min,Degran.Cavity.5Min)
+
+# Generate figure
 Figure_2A <- ggplot(Degran.df, aes(x=Time, y=Fraction, color=Location)) + theme_bw() +
   
   # Create title and axes labels
@@ -439,8 +503,23 @@ Figure_2A <- ggplot(Degran.df, aes(x=Time, y=Fraction, color=Location)) + theme_
 
 ggsave(plot = Figure_2A, width = Single.Width, height = Single.Height, dpi = 300, filename = "Figure2A.png")
 
+### Figure 2B: Loosely adherent platelets
+# Export Data for Figure 2B as CSV
+write.csv(Loose.df,'Figure2B.csv')
 
-# Figure 2B: Loosely adherent platelets
+# Statistical test for Loosely Adherent Platelets
+Loose.Extra.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Extravascular' & Dataset3$Type=='Loosely Adherent']
+Loose.Extra.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Extravascular' & Dataset3$Type=='Loosely Adherent']
+Loose.Intra.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Intravascular' & Dataset3$Type=='Loosely Adherent']
+Loose.Intra.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Intravascular' & Dataset3$Type=='Loosely Adherent']
+Loose.Cavity.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Cavity' & Dataset3$Type=='Loosely Adherent']
+Loose.Cavity.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Cavity' & Dataset3$Type=='Loosely Adherent']
+
+wilcox.test(Loose.Extra.1Min,Loose.Extra.5Min)
+wilcox.test(Loose.Intra.1Min,Loose.Intra.5Min)
+wilcox.test(Loose.Cavity.1Min,Loose.Cavity.5Min)
+
+# Generat figure
 Figure_2B <- ggplot(Loose.df, aes(x=Time, y=Fraction, color=Location)) + theme_bw() +
   
   # Create title and axes labels
@@ -489,8 +568,23 @@ Figure_2B <- ggplot(Loose.df, aes(x=Time, y=Fraction, color=Location)) + theme_b
 
 ggsave(plot = Figure_2B, width = Single.Width, height = Single.Height, dpi = 300, filename = "Figure2B.png")
 
+### Figure 2C: Tightly adherent platelets
+# Export Data for Figure 2C as CSV
+write.csv(Tight.df,'Figure2C.csv')
 
-# Figure 2C: Tightly adherent platelets
+# Statistical test for Tightly Adherent Platelets
+Tight.Extra.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Extravascular' & Dataset3$Type=='Tightly Adherent']
+Tight.Extra.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Extravascular' & Dataset3$Type=='Tightly Adherent']
+Tight.Intra.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Intravascular' & Dataset3$Type=='Tightly Adherent']
+Tight.Intra.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Intravascular' & Dataset3$Type=='Tightly Adherent']
+Tight.Cavity.1Min = Dataset3$Volume[Dataset3$Time==1 & Dataset3$Location=='Cavity' & Dataset3$Type=='Tightly Adherent']
+Tight.Cavity.5Min = Dataset3$Volume[Dataset3$Time==5 & Dataset3$Location=='Cavity' & Dataset3$Type=='Tightly Adherent']
+
+wilcox.test(Tight.Extra.1Min,Tight.Extra.5Min)
+wilcox.test(Tight.Intra.1Min,Tight.Intra.5Min)
+wilcox.test(Tight.Cavity.1Min,Tight.Cavity.5Min)
+
+# Generate figure
 Figure_2C <- ggplot(Tight.df, aes(x=Time, y=Fraction, color=Location)) + theme_bw() +
   
   # Create title and axes labels
