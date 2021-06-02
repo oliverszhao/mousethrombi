@@ -43,7 +43,8 @@ Mean.Size    <- 3
 Point.Size   <- 8
 Point.Alpha  <- 0.6
 Point.Jitter <- 0.5
-Line.Size    <- 1
+Line.Size    <- 2
+Border.Width <- 3
 
 # Text Format
 Title.Size   <- 32
@@ -235,6 +236,7 @@ Figure_1A <- ggplot(Data1A, aes(x=Time, y=Volume, color=Measurement)) + theme_bw
   theme(legend.title = element_text(size=Legend.Size, face="bold")) +
   theme(legend.text = element_text(size=Legend.Size)) +
   theme(legend.background = element_rect(fill = alpha("white", 0))) +
+  theme(panel.border = element_rect(fill=NA, size=Border.Width)) +
   scale_y_continuous(breaks = seq(0, 0.008, len = 9)) +
   scale_color_manual(labels = c("Thrombus", "Platelets","Vaults"), values = c("#88498F","#3BF4FB","#4A4328")) +
   
@@ -314,6 +316,7 @@ Figure_1B <- ggplot(Data1B, aes(x=Time, y=Volume, color=Type)) + theme_bw() +
   theme(legend.title = element_text(size=Legend.Size, face="bold")) +
   theme(legend.text = element_text(size=Legend.Size)) +
   theme(legend.background = element_rect(fill = alpha("white", 0))) +
+  theme(panel.border = element_rect(fill=NA, size=Border.Width)) +
   scale_y_continuous(breaks = seq(0, 0.005, len = 6)) +
   scale_color_manual(labels = c("Degranulated", "Loose", "Tight"), values = c("#F37A27", "#E1DB12", "#2FC80A")) +
   
@@ -388,6 +391,7 @@ Figure_1C <- ggplot(Data1C, aes(x=Time, y=Volume, color=Type)) + theme_bw() +
   theme(legend.title = element_text(size=Legend.Size, face="bold")) +
   theme(legend.text = element_text(size=Legend.Size)) +
   theme(legend.background = element_rect(fill = alpha("white", 0))) +
+  theme(panel.border = element_rect(fill=NA, size=Border.Width)) +
   scale_y_continuous(breaks = seq(0, 0.005, len = 6)) +
   scale_color_manual(labels = c("Extravascular", "Intravascular"), values = c("red","blue")) +
   
@@ -470,6 +474,7 @@ Figure_2A <- ggplot(Degran.df, aes(x=Time, y=Fraction, color=Location)) + theme_
   theme(legend.title = element_text(size=Legend.Size, face="bold")) +
   theme(legend.text = element_text(size=Legend.Size)) +
   theme(legend.background = element_rect(fill = alpha("white", 0))) +
+  theme(panel.border = element_rect(fill=NA, size=Border.Width)) +
   scale_y_continuous(breaks = seq(0, 100, len = 6)) +
   scale_color_manual(labels = c("Extravascular", "Cavity", "Intravascular"), values = c("#AD343E", "#000000", "#59C9A9")) +
   
@@ -535,6 +540,7 @@ Figure_2B <- ggplot(Loose.df, aes(x=Time, y=Fraction, color=Location)) + theme_b
   theme(legend.title = element_text(size=Legend.Size, face="bold")) +
   theme(legend.text = element_text(size=Legend.Size)) +
   theme(legend.background = element_rect(fill = alpha("white", 0))) +
+  theme(panel.border = element_rect(fill=NA, size=Border.Width)) +
   scale_y_continuous(breaks = seq(0, 100, len = 6)) +
   scale_color_manual(labels = c("Extravascular", "Cavity", "Intravascular"), values = c("#AD343E", "#000000", "#59C9A9")) +
   
@@ -600,6 +606,7 @@ Figure_2C <- ggplot(Tight.df, aes(x=Time, y=Fraction, color=Location)) + theme_b
   theme(legend.title = element_text(size=Legend.Size, face="bold")) +
   theme(legend.text = element_text(size=Legend.Size)) +
   theme(legend.background = element_rect(fill = alpha("white", 0))) +
+  theme(panel.border = element_rect(fill=NA, size=Border.Width)) +
   scale_y_continuous(breaks = seq(0, 100, len = 6)) +
   scale_color_manual(labels = c("Extravascular", "Cavity", "Intravascular"), values = c("#AD343E", "#000000", "#59C9A9")) +
   
